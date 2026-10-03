@@ -11,9 +11,7 @@ export type Space = {
 };
 
 type WorkTabsProps = {
-  /** Nama kamu, dipakai buat tab personal: "{name}'s Work" */
   name?: string;
-  /** Daftar group. Tab personal selalu ada di paling kiri. */
   groups?: Space[];
   activeId?: string;
   onChange?: (id: string) => void;
@@ -56,11 +54,11 @@ function UsersIcon() {
 
 const DEFAULT_GROUPS: Space[] = [
   { id: "inten-2026", name: "INTEN 2026", kind: "group", members: 12 },
-  { id: "kelompok-fisika", name: "Kelompok Fisika", kind: "group", members: 4 },
+  { id: "physics-group", name: "Physics Group", kind: "group", members: 4 },
 ];
 
 export default function WorkTabs({
-  name = "Nama",
+  name = "Name",
   groups = DEFAULT_GROUPS,
   activeId,
   onChange,
@@ -85,7 +83,6 @@ export default function WorkTabs({
     [onChange],
   );
 
-  // Pastikan tab aktif kelihatan di layar kecil
   useEffect(() => {
     tabRefs.current[active]?.scrollIntoView({
       block: "nearest",
@@ -115,7 +112,6 @@ export default function WorkTabs({
       transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
       className={`flex items-center justify-between gap-3 rounded-xl border border-foreground/10 bg-background/60 p-1.5 backdrop-blur-sm ${className}`}
     >
-      {/* Tabs */}
       <div
         role="tablist"
         aria-label="Space"
@@ -180,11 +176,10 @@ export default function WorkTabs({
         </AnimatePresence>
       </div>
 
-      {/* Add group */}
       <motion.button
         type="button"
         onClick={onAdd}
-        aria-label="Buat group baru"
+        aria-label="Create new group"
         whileHover="hover"
         whileTap={{ scale: 0.95 }}
         className={`inline-flex h-9 shrink-0 items-center gap-1.5 rounded-lg border border-foreground/15 px-3 text-sm tracking-tight transition-colors duration-300 hover:bg-foreground/5 ${focusRing}`}

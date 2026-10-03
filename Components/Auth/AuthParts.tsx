@@ -9,7 +9,6 @@ export const EASE = [0.22, 1, 0.36, 1] as const;
 export const focusRing =
   "focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-foreground";
 
-/** Kartu + judul, dipakai bareng oleh halaman masuk & daftar */
 export function AuthCard({
   title,
   subtitle,
@@ -87,7 +86,7 @@ export function Divider() {
   return (
     <div className="my-5 flex items-center gap-3 text-sm tracking-tight text-foreground/45">
       <span className="h-px flex-1 bg-foreground/10" />
-      atau
+      or
       <span className="h-px flex-1 bg-foreground/10" />
     </div>
   );
@@ -96,7 +95,6 @@ export function Divider() {
 type FieldProps = Omit<ComponentProps<"input">, "id"> & {
   label: string;
   error?: string;
-  /** Link kecil di kanan label, mis. "Lupa password?" */
   aside?: ReactNode;
 };
 
@@ -135,10 +133,10 @@ export function Field({
           <button
             type="button"
             onClick={() => setShow((s) => !s)}
-            aria-label={show ? "Sembunyikan password" : "Tampilkan password"}
+            aria-label={show ? "Hide password" : "Show password"}
             className={`absolute right-2 top-1/2 -translate-y-1/2 rounded-md px-2 py-1 text-sm tracking-tight text-foreground/55 transition-colors hover:text-foreground ${focusRing}`}
           >
-            {show ? "Tutup" : "Lihat"}
+            {show ? "Hide" : "Show"}
           </button>
         )}
       </div>
@@ -170,7 +168,7 @@ export function SubmitButton({
       whileTap={{ scale: 0.97 }}
       className={`inline-flex h-11 w-full items-center justify-center rounded-full bg-foreground text-[0.9375rem] tracking-tight text-background disabled:opacity-60 ${focusRing}`}
     >
-      {loading ? "Memproses…" : children}
+      {loading ? "Processing…" : children}
     </motion.button>
   );
 }

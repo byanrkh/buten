@@ -18,42 +18,40 @@ export default function RegisterForm() {
     const confirm = String(data.get("confirm") ?? "");
 
     const next: Errors = {};
-    if (name.length < 2) next.name = "Nama minimal 2 karakter.";
-    if (!/^\S+@\S+\.\S+$/.test(email)) next.email = "Masukkan email yang valid.";
-    if (password.length < 8) next.password = "Password minimal 8 karakter.";
-    if (confirm !== password) next.confirm = "Konfirmasi password tidak sama.";
-    if (!data.get("terms")) next.terms = "Kamu perlu menyetujui syarat & ketentuan.";
+    if (name.length < 2) next.name = "Name must be at least 2 characters.";
+    if (!/^\S+@\S+\.\S+$/.test(email)) next.email = "Enter a valid email.";
+    if (password.length < 8) next.password = "Password must be at least 8 characters.";
+    if (confirm !== password) next.confirm = "Passwords do not match.";
+    if (!data.get("terms")) next.terms = "You need to agree to the terms & conditions.";
     setErrors(next);
     if (Object.keys(next).length) return;
 
     setLoading(true);
-    // TODO: panggil API registrasi di sini
     await new Promise((r) => setTimeout(r, 800));
     setLoading(false);
   }
 
   function onGoogle() {
-    // TODO: mulai alur OAuth Google di sini
   }
 
   return (
     <AuthCard
-      title="Daftar"
-      subtitle="Simpan papan tulis, catat ulang, dan diskusi bareng teman."
+      title="Register"
+      subtitle="Save whiteboards, rewrite your notes, and discuss with friends."
       footer={
         <>
-          Sudah punya akun? <TextLink href="/masuk">Masuk</TextLink>
+          Already have an account? <TextLink href="/login">Login</TextLink>
         </>
       }
     >
-      <GoogleButton label="Daftar dengan Google" onClick={onGoogle} />
+      <GoogleButton label="Register with Google" onClick={onGoogle} />
       <Divider />
 
       <form onSubmit={onSubmit} noValidate className="space-y-4">
-        <Field label="Nama" name="name" autoComplete="name" placeholder="Nama lengkap" error={errors.name} />
-        <Field label="Email" name="email" type="email" autoComplete="email" placeholder="kamu@email.com" error={errors.email} />
-        <Field label="Password" name="password" type="password" autoComplete="new-password" placeholder="Minimal 8 karakter" error={errors.password} />
-        <Field label="Konfirmasi password" name="confirm" type="password" autoComplete="new-password" placeholder="Ulangi password" error={errors.confirm} />
+        <Field label="Name" name="name" autoComplete="name" placeholder="Full name" error={errors.name} />
+        <Field label="Email" name="email" type="email" autoComplete="email" placeholder="you@email.com" error={errors.email} />
+        <Field label="Password" name="password" type="password" autoComplete="new-password" placeholder="At least 8 characters" error={errors.password} />
+        <Field label="Confirm password" name="confirm" type="password" autoComplete="new-password" placeholder="Repeat password" error={errors.confirm} />
 
         <div>
           <label className="flex cursor-pointer items-start gap-2.5 text-sm leading-relaxed tracking-tight text-foreground/70">
@@ -62,7 +60,7 @@ export default function RegisterForm() {
               name="terms"
               className={`mt-0.5 size-4 shrink-0 accent-foreground ${focusRing}`}
             />
-            <span>Aku setuju dengan syarat &amp; ketentuan dan kebijakan privasi Buten.</span>
+            <span>I agree to Buten's terms &amp; conditions and privacy policy.</span>
           </label>
           {errors.terms && (
             <p role="alert" className="mt-1.5 text-sm tracking-tight text-red-600">
@@ -72,7 +70,7 @@ export default function RegisterForm() {
         </div>
 
         <div className="pt-1">
-          <SubmitButton loading={loading}>Buat akun</SubmitButton>
+          <SubmitButton loading={loading}>Create account</SubmitButton>
         </div>
       </form>
     </AuthCard>

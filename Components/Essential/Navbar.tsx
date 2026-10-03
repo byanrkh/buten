@@ -39,14 +39,12 @@ export default function Navbar() {
   const active = LINKS.find((l) => pathname.startsWith(l.href))?.href ?? null;
   const target = hovered ?? active;
 
-  // Sembunyi saat scroll ke bawah, muncul lagi saat scroll ke atas
   const { scrollY } = useScroll();
   useMotionValueEvent(scrollY, "change", (y) => {
     const last = scrollY.getPrevious() ?? 0;
     setHidden(y > last && y > 96);
   });
 
-  // Tutup menu saat pindah halaman / Escape, kunci scroll saat terbuka
   useEffect(() => setOpen(false), [pathname]);
   useEffect(() => {
     if (!open) return;
@@ -68,11 +66,10 @@ export default function Navbar() {
         className="sticky top-0 z-50 border-b border-foreground/10 bg-background/80 backdrop-blur-md"
       >
         <Container className="grid h-16 grid-cols-[1fr_auto] items-center md:grid-cols-[1fr_auto_1fr]">
-          {/* Wordmark */}
           <motion.div whileTap={{ scale: 0.97 }} className="w-fit">
             <Link
               href="/"
-              aria-label="Buten, ke beranda"
+              aria-label="Buten, go to home"
               className={`flex w-fit items-center gap-2.5 ${focusRing}`}
             >
               <span className="text-[1.375rem] font-semibold leading-none tracking-[-0.04em]">
@@ -81,9 +78,8 @@ export default function Navbar() {
             </Link>
           </motion.div>
 
-          {/* Desktop links */}
           <nav
-            aria-label="Utama"
+            aria-label="Main"
             className="relative hidden md:block"
             onMouseLeave={() => setHovered(null)}
           >
@@ -124,16 +120,15 @@ export default function Navbar() {
             </div>
           </nav>
 
-          {/* Desktop actions */}
           <div className="hidden items-center justify-end gap-6 md:flex">
             <Link
-              href="/masuk"
+              href="/login"
               className={`text-[0.9375rem] tracking-tight text-foreground/55 transition-colors duration-300 hover:text-foreground ${focusRing}`}
             >
               Login
             </Link>
             <MotionLink
-              href="/daftar"
+              href="/register"
               whileHover={{ opacity: 0.85 }}
               whileTap={{ scale: 0.95 }}
               className={`inline-flex h-9 items-center rounded-full bg-foreground px-5 text-[0.9375rem] tracking-tight text-background ${focusRing}`}
@@ -142,7 +137,6 @@ export default function Navbar() {
             </MotionLink>
           </div>
 
-          {/* Mobile toggle */}
           <motion.button
             type="button"
             whileTap={{ scale: 0.95 }}
@@ -151,12 +145,11 @@ export default function Navbar() {
             aria-controls="menu-mobile"
             className={`justify-self-end text-[0.9375rem] tracking-tight md:hidden ${focusRing}`}
           >
-            {open ? "Tutup" : "Menu"}
+            {open ? "Close" : "Menu"}
           </motion.button>
         </Container>
       </motion.header>
 
-      {/* Mobile menu */}
       <AnimatePresence>
         {open && (
           <motion.div
@@ -169,7 +162,7 @@ export default function Navbar() {
             className="fixed inset-0 z-40 bg-background/95 backdrop-blur-sm md:hidden"
           >
             <nav
-              aria-label="Utama (mobile)"
+              aria-label="Main (mobile)"
               className="flex h-full flex-col justify-center px-8"
             >
               <motion.ul
@@ -200,18 +193,18 @@ export default function Navbar() {
                   className="flex items-center gap-5 pt-2 text-sm"
                 >
                   <Link
-                    href="/masuk"
+                    href="/login"
                     onClick={() => setOpen(false)}
                     className={`text-foreground/50 transition-colors hover:text-foreground ${focusRing}`}
                   >
-                    Masuk
+                    Login
                   </Link>
                   <Link
-                    href="/daftar"
+                    href="/register"
                     onClick={() => setOpen(false)}
                     className={`text-foreground/50 transition-colors hover:text-foreground ${focusRing}`}
                   >
-                    Daftar
+                    Register
                   </Link>
                 </motion.li>
               </motion.ul>

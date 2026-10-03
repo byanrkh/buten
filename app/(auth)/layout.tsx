@@ -9,7 +9,7 @@ export default function AuthLayout({ children }: { children: ReactNode }) {
         <Container className="flex h-16 items-center justify-between">
           <Link
             href="/"
-            aria-label="Buten, ke beranda"
+            aria-label="Buten, go to home"
             className="text-[1.375rem] font-semibold leading-none tracking-[-0.04em] focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-foreground"
           >
             Buten®
@@ -18,7 +18,7 @@ export default function AuthLayout({ children }: { children: ReactNode }) {
             href="/"
             className="text-[0.9375rem] tracking-tight text-foreground/55 transition-colors duration-300 hover:text-foreground"
           >
-            Kembali
+            Back
           </Link>
         </Container>
       </header>

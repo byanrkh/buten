@@ -3,22 +3,21 @@ import * as motion from "motion/react-client";
 import type { Variants } from "motion/react";
 import Container from "../Container";
 
-// TODO: ganti dengan data asli dari database
 const USER = { name: "Abyan" };
 
 const STATS = [
   {
-    label: "Catatan",
-    href: "/catatan",
+    label: "Notes",
+    href: "/notes",
     value: "24",
-    hint: "3 ditambah minggu ini",
+    hint: "3 added this week",
   },
-  { label: "Diskusi", href: "/forum", value: "7", hint: "2 belum dibalas" },
+  { label: "Discussions", href: "/forum", value: "7", hint: "2 unanswered" },
   {
-    label: "Progres",
-    href: "/progres",
+    label: "Progress",
+    href: "/progress",
     value: "68%",
-    hint: "Target semester ini",
+    hint: "This semester's target",
     progress: 68,
   },
 ];
@@ -63,7 +62,7 @@ function Arrow() {
 }
 
 export default function Hero() {
-  const today = new Intl.DateTimeFormat("id-ID", {
+  const today = new Intl.DateTimeFormat("en-US", {
     weekday: "long",
     day: "numeric",
     month: "long",
@@ -71,7 +70,6 @@ export default function Hero() {
 
   return (
     <Container as="section" className="py-14 sm:py-20">
-      {/* Greeting + actions */}
       <motion.div
         variants={stagger(0.1)}
         initial="hidden"
@@ -97,18 +95,18 @@ export default function Hero() {
             variants={rise}
             className="mt-5 max-w-md text-[0.9375rem] leading-relaxed tracking-tight text-foreground/55"
           >
-            Lanjutin catatan kemarin, upload foto papan tulis baru, atau cek
-            diskusi yang lagi rame.
+            Pick up where you left off, upload a new whiteboard photo, or check
+            out the busiest discussions.
           </motion.p>
         </div>
 
         <motion.div variants={rise} className="flex items-center gap-3">
           <motion.div whileHover={{ opacity: 0.85 }} whileTap={{ scale: 0.95 }}>
             <Link
-              href="/catatan/baru"
+              href="/notes/new"
               className={`inline-flex h-10 items-center rounded-full bg-foreground px-5 text-[0.9375rem] tracking-tight text-background ${focusRing}`}
             >
-              + Upload papan tulis
+              + Upload whiteboard
             </Link>
           </motion.div>
           <motion.div whileTap={{ scale: 0.95 }}>
@@ -116,13 +114,12 @@ export default function Hero() {
               href="/forum"
               className={`inline-flex h-10 items-center rounded-full border border-foreground/15 px-5 text-[0.9375rem] tracking-tight transition-colors duration-300 hover:bg-foreground/5 ${focusRing}`}
             >
-              Buka forum
+              Open forum
             </Link>
           </motion.div>
         </motion.div>
       </motion.div>
 
-      {/* Quick stats */}
       <motion.ul
         variants={stagger(0.4, 0.1)}
         initial="hidden"

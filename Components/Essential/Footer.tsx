@@ -3,18 +3,18 @@ import Container from "@/Components/Container";
 
 const COLUMNS = [
   {
-    title: "Jelajahi",
+    title: "Explore",
     links: [
-      { label: "Catatan", href: "/catatan" },
+      { label: "Notes", href: "/notes" },
       { label: "Forum", href: "/forum" },
-      { label: "Progres", href: "/progres" },
+      { label: "Progress", href: "/progress" },
     ],
   },
   {
-    title: "Akun",
+    title: "Account",
     links: [
-      { label: "Masuk", href: "/masuk" },
-      { label: "Daftar", href: "/daftar" },
+      { label: "Login", href: "/login" },
+      { label: "Register", href: "/register" },
     ],
   },
 ];
@@ -29,8 +29,8 @@ export default function Footer() {
     <footer className="mt-auto overflow-hidden border-t border-foreground/10 bg-background">
       <Container className="grid gap-12 pb-10 pt-14 md:grid-cols-[1.6fr_1fr_1fr]">
         <p className="max-w-xs text-[0.9375rem] leading-relaxed tracking-tight text-foreground/55">
-          Simpan foto papan tulis, catat ulang, dan diskusi bareng sesama
-          pelajar INTEN, semuanya di satu tempat.
+          Save whiteboard photos, rewrite your notes, and discuss with fellow
+          INTEN students, all in one place.
         </p>
 
         {COLUMNS.map((col) => (
@@ -51,7 +51,6 @@ export default function Footer() {
         ))}
       </Container>
 
-      {/* Oversized wordmark, cropped by the bottom edge */}
       <div
         aria-hidden="true"
         className="select-none overflow-hidden px-5 pt-6 sm:px-8"
@@ -70,7 +69,7 @@ export default function Footer() {
             href="#"
             className={linkClass.replace("text-[0.9375rem]", "text-sm")}
           >
-            Ke atas
+            Back to top
           </a>
         </Container>
       </div>
