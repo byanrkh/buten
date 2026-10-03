@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import "./globals.css";
 import { googleSans } from "@/libs/Fonts";
+import Background from "@/Components/Background";
 
 export const metadata: Metadata = {
   title: "Create Next App",
@@ -10,7 +11,10 @@ export const metadata: Metadata = {
 export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
     <html lang="en" className={`${googleSans.className} h-full antialiased`}>
-      <body className="min-h-full flex flex-col">{children}</body>
+      <body className="min-h-full flex flex-col">
+        <Background />
+        {children}
+      </body>
     </html>
   );
 }
